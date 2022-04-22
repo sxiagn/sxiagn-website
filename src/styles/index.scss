@@ -1,0 +1,115 @@
+@import './element-variables.scss';
+
+
+body {
+  height                 : 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing : antialiased;
+  text-rendering         : optimizeLegibility;
+  font-family            : "Source Han Sans", "微软雅黑", "microsoft yahei", "HanHei SC", PingHei, "PingFang SC", sans-serif;
+}
+
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dd,
+dt,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+img {
+  margin : 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+
+/*  去掉图片底部默认的3像素空白缝隙*/
+img {
+  border        : 0;
+  vertical-align: middle;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+label {
+  font-weight: 700;
+}
+
+html {
+  height    : 100%;
+  box-sizing: border-box;
+}
+
+#app {
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor         : pointer;
+  color          : inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+// 浮动
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display   : block;
+    font-size : 0;
+    content   : " ";
+    clear     : both;
+    height    : 0;
+  }
+}
+
+// 去除chrome浏览器input输入框默认颜色
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px white inset !important;
+}
+
+// 代码高亮背景色
+.hljs {
+  background: #f1f1f1 !important;
+}

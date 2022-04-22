@@ -1,0 +1,44 @@
+{
+  "name": "sxiagn-webblog",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^1.1.4",
+    "@wangeditor/editor": "^5.0.1",
+    "@wangeditor/editor-for-vue": "^5.1.10",
+    "axios": "^0.26.1",
+    "core-js": "^3.22.1",
+    "element-plus": "^2.1.10",
+    "highlight.js": "^11.5.1",
+    "vue": "^3.2.25",
+    "vue-router": "^4.0.14",
+    "wangeditor": "^4.7.7"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.25",
+    "@types/webpack-env": "^1.16.4",
+    "@typescript-eslint/eslint-plugin": "^5.17.0",
+    "@typescript-eslint/parser": "^5.17.0",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "@vue/eslint-config-typescript": "^10.0.0",
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-vue": "^8.5.0",
+    "prettier": "^2.6.2",
+    "sass": "^1.38.0",
+    "sass-loader": "^8.0.2",
+    "typescript": "^4.5.4",
+    "vite": "^2.9.2",
+    "vue-tsc": "^0.29.8"
+  }
+}
