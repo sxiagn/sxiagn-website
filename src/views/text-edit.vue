@@ -34,24 +34,23 @@
           />
         </el-form-item>
       </el-form>
-      <div ref="editor" class="wang-editor" />
+      <Wangeditor @editor-html="handleEditorHtml" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onBeforeUnmount, ref, reactive } from 'vue';
+import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import WangEditor from 'wangeditor';
 import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
 import TextHeader from '@/components/text-header.vue';
+import Wangeditor from '@/components/wangeditor.vue';
 import { contentTypeList } from '../utils/text-option';
 import { addTextApi } from '../api/index';
 
 const ruleForm = ref<FormInstance>();
 const router = useRouter();
-const editor = ref();
 const textEditData = reactive({
   contentDesc: '',
   contentTypeList
@@ -68,22 +67,10 @@ const formRules = reactive<FormRules>({
   textType: [{ required: true, message: '请选择文章类别', trigger: ['blur', 'change'] }]
 });
 
-let instance: WangEditor | null;
-onMounted(() => {
-  instance = new WangEditor(editor.value);
-  console.log('数据', instance);
-  Object.assign(instance.config, {
-    onchange() {
-      textEditData.contentDesc = instance?.txt.html() as string;
-    }
-  });
-  instance.create();
-});
-
-onBeforeUnmount(() => {
-  instance?.destroy();
-  instance = null;
-});
+// 获取富文本内容
+const handleEditorHtml = (val: string) => {
+  textEditData.contentDesc = val;
+};
 
 // 发送文章
 const handleSend = async (formEl: FormInstance | undefined) => {
@@ -112,10 +99,6 @@ const handleSend = async (formEl: FormInstance | undefined) => {
     width: 100%;
     color: #333;
     font-size: 14px;
-  }
-  .wang-editor {
-    position: relative;
-    z-index: 0;
   }
   .content-form {
     :deep(.el-select) {

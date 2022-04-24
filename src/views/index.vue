@@ -36,6 +36,7 @@ import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { TextTheme } from '../utils/text-option';
+import { problemFeedBack } from '../api/index';
 
 const formData = reactive({
   textarea: ''
@@ -50,7 +51,13 @@ const handleToList = (item: { title: any; textType: any }) => {
     }
   });
 };
-const handleConfirm = () => {
+const handleConfirm = async () => {
+  const params = {
+    problemDesc: formData.textarea,
+    createTime: Date.now(),
+    isFinish: false
+  };
+  await problemFeedBack(params);
   ElMessage.success('执行成功');
 };
 </script>

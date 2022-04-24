@@ -155,6 +155,7 @@ module.exports = {
     'no-shadow': 'off',
     'no-unused-vars': 'off',
     'no-use-before-define': 'off',
+    'no-debugger': 1,
     'vue/multi-word-component-names': [
       'error',
       {

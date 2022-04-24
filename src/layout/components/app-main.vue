@@ -2,9 +2,7 @@
   <el-main class="app-main" @scroll="handleScrollEvent">
     <router-view v-slot="{ Component }">
       <transition name="router-fade" mode="out-in">
-        <keep-alive>
-          <component :is="Component" />
-        </keep-alive>
+        <component :is="Component" />
       </transition>
     </router-view>
     <ToTop v-show="appMainData.showUp" class="to-commont" @scroll-to="handleScrollTo" />
