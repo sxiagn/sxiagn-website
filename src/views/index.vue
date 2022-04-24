@@ -52,6 +52,7 @@ const handleToList = (item: { title: any; textType: any }) => {
   });
 };
 const handleConfirm = async () => {
+  if (!formData.textarea.trim()) return;
   const params = {
     problemDesc: formData.textarea,
     createTime: Date.now(),
@@ -83,7 +84,7 @@ const handleConfirm = async () => {
 
     .wrap-item {
       padding: 10px;
-      border-radius: 5px;
+      border-radius: 10px;
       background-color: #409eff;
       height: 200px;
       cursor: pointer;

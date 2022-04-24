@@ -23,6 +23,11 @@ withDefaults(defineProps<Props>(), {
 
 <style lang="scss" scoped>
 .text-header {
+  position: sticky;
+  top: 0;
+  padding-top: 30px;
+  background-color: #fff;
+  z-index: 1;
   .text-title {
     height: 50px;
     width: 100%;

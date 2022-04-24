@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <TextHeader title="发表文章" />
-    <div class="text-list">
+    <div class="text-add">
       <el-form
         ref="ruleForm"
         :model="FormData"
@@ -95,7 +95,7 @@ const handleSend = async (formEl: FormInstance | undefined) => {
 
 <style lang="scss" scoped>
 .container {
-  .text-list {
+  .text-add {
     width: 100%;
     color: #333;
     font-size: 14px;

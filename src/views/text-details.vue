@@ -2,7 +2,7 @@
   <div class="container">
     <TextHeader :title="textDetailData.title" />
     <div v-highlight class="text-content">
-      <div v-html="textDetailData.contentDesc" />
+      <div class="v-html" v-html="textDetailData.contentDesc" />
     </div>
   </div>
 </template>
@@ -36,12 +36,21 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .container {
+  position: relative;
   .text-content {
     width: 100%;
-
-    img {
-      width: 100%;
-    }
+    padding: 0 2px;
+  }
+}
+>>> .v-html {
+  font-size: 12px;
+  margin: 20px;
+  p {
+    font-size: 12px;
+    padding-bottom: 6px;
+  }
+  img {
+    width: 100%;
   }
 }
 </style>

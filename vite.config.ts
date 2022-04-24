@@ -1,4 +1,3 @@
-// const path = require('path')
 import * as path from 'path';
 import { defineConfig, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -12,7 +11,7 @@ export default defineConfig(({ mode }) => {
     plugins: [vue()],
     resolve: {
       alias: {
-        '@': resolve('src')
+        '@': resolve('src') // 配置别名
       }
     },
     server: {
@@ -22,7 +21,7 @@ export default defineConfig(({ mode }) => {
           target: 'http://localhost:3000/', // API服务器的地址（可以理解成请求根路径）
           ws: true, // 代理websockets
           changeOrigin: true, // 虚拟的站点需要更管origin
-          // // url一般定义为path，因为这里path会报重复定义的eslint警告，换成url
+          // 入参一般定义为path，因为这里path会报重复定义的eslint警告，换成url避免eslint报错
           rewrite: url => url.replace(new RegExp(`^${envConfig.VITE_APP_BASE_API}`), '')
         }
       }

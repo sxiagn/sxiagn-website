@@ -3,11 +3,11 @@
     <TextHeader :title="title" />
     <div class="text-list">
       <div v-for="(item, index) in textList" :key="index" class="text-item" @click="handleToDetails(item)">
-        <span class="text-title"
-          ><span>{{ index + 1 }}. </span>{{ item['title'] }}</span
-        >
+        <div class="text-title">{{ item['title'] }}</div>
+        <div class="create-time">{{ item['createTime'] }}</div>
       </div>
     </div>
+    <div v-if="!textList.length" class="no-data">暂无数据</div>
   </div>
 </template>
 
@@ -48,16 +48,37 @@ const handleToDetails = (item: { id: any }) => {
     width: 100%;
     color: #333;
     font-size: 14px;
+    padding: 0 2px;
     .text-item {
       width: 100%;
-      border-bottom: 1px solid #909399;
+      border-bottom: 1px solid #dedede;
       padding: 10px 0;
       cursor: pointer;
-      &:hover {
-        text-decoration: underline;
+      display: flex;
+      justify-content: space-between;
+      .text-title {
+        flex: 1;
+        padding: 0 2px;
+        white-space: nowrap; //不换行
+        overflow: hidden; //超出隐藏
+        text-overflow: ellipsis; //变成...
+        &:hover {
+          text-decoration: underline;
+          color: #409eff;
+        }
+      }
+      .create-time {
         color: #409eff;
+        font-size: 12px;
+        width: 106px;
       }
     }
+  }
+  .no-data {
+    padding: 30px 0;
+    background-color: #ebebeb;
+    text-align: center;
+    font-size: 12px;
   }
 }
 </style>
