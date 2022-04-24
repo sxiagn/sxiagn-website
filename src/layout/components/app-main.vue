@@ -1,11 +1,12 @@
 <template>
-  <el-main class="app-main" @scroll="handleScrollEvent">
+  <el-main id="app-main" class="app-main" @scroll="handleScrollEvent">
     <router-view v-slot="{ Component }">
       <transition name="router-fade" mode="out-in">
         <component :is="Component" />
       </transition>
     </router-view>
     <ToTop v-show="appMainData.showUp" class="to-commont" @scroll-to="handleScrollTo" />
+    <GoBack v-show="$route.name !== 'Index'" class="go-back to-commont" />
     <ToHome v-show="$route.name !== 'Index'" class="to-home to-commont" />
   </el-main>
 </template>
@@ -14,6 +15,7 @@
 import { reactive, onUnmounted } from 'vue';
 import ToTop from '@/components/to-top.vue';
 import ToHome from '@/components/to-home.vue';
+import GoBack from '@/components/go-back.vue';
 
 interface AppMainData {
   timer: NodeJS.Timer | null;
@@ -52,14 +54,17 @@ onUnmounted(() => {
 <style lang="scss" scoped>
 .app-main {
   position: relative;
-  padding: 30px 20px 20px;
+  padding: 0 20px 30px 20px;
   .to-commont {
     position: fixed;
-    right: 20px;
-    bottom: 150px;
+    right: 25px;
+    bottom: 130px;
+  }
+  .go-back {
+    bottom: 90px;
   }
   .to-home {
-    bottom: 110px;
+    bottom: 50px;
   }
 }
 

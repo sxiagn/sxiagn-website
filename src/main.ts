@@ -8,6 +8,8 @@ import App from './App.vue';
 import router from './router';
 // 代码高亮的js
 import 'highlight.js/styles/googlecode.css';
+// 导入路由权限控制js
+import './utils/permission';
 // 样式文件
 const app = createApp(App);
 Object.keys(ElIcons).forEach(name => {
