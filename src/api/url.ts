@@ -1,4 +1,4 @@
-export const ADD_TEXT = 'add/text';
-export const TEXT_LIST = '/text/list';
-export const TEXT_DETAILS = '/text/details';
+export const ADD_ARTICLE = 'add/article';
+export const ARTICLE_LIST = '/article/list';
+export const ARTICLE__DETAILS = '/article/details';
 export const FEED_BACK = '/problem/feedback';

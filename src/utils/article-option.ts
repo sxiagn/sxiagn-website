@@ -1,4 +1,4 @@
-export const TextTheme = [
+export const ArticleTheme = [
   {
     title: 'Javascript/HTML/CSS',
     desc: '记录常见的前端基本知识，强化基本功',

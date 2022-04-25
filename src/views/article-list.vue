@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <TextHeader :title="title" />
-    <div class="text-list">
-      <div v-for="(item, index) in textList" :key="index" class="text-item" @click="handleToDetails(item)">
-        <div class="text-title">{{ item['title'] }}</div>
+    <ArticleHeader :title="title" />
+    <div class="article-list">
+      <div v-for="(item, index) in textList" :key="index" class="article-item" @click="handleToDetails(item)">
+        <div class="article-title">{{ item['title'] }}</div>
         <div class="create-time">{{ item['createTime'] }}</div>
       </div>
     </div>
@@ -14,8 +14,8 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import TextHeader from '../components/text-header.vue';
-import { getTextList } from '../api/index';
+import ArticleHeader from '../components/article-header.vue';
+import { getArticleList } from '../api/index';
 
 interface Props {
   title: string;
@@ -26,7 +26,7 @@ const router = useRouter();
 const textList = ref([]);
 
 const handleGetTextlist = async () => {
-  const res = await getTextList({ textType: props.textType });
+  const res = await getArticleList({ textType: props.textType });
   textList.value = res.data || [];
 };
 onMounted(() => {
@@ -34,7 +34,7 @@ onMounted(() => {
 });
 const handleToDetails = (item: { id: any }) => {
   router.push({
-    name: 'TextDetails',
+    name: 'ArticleDetails',
     query: {
       id: item.id
     }
@@ -44,19 +44,19 @@ const handleToDetails = (item: { id: any }) => {
 
 <style lang="scss" scoped>
 .container {
-  .text-list {
+  .article-list {
     width: 100%;
     color: #333;
     font-size: 14px;
     padding: 0 2px;
-    .text-item {
+    .article-item {
       width: 100%;
       border-bottom: 1px solid #dedede;
       padding: 10px 0;
       cursor: pointer;
       display: flex;
       justify-content: space-between;
-      .text-title {
+      .article-title {
         flex: 1;
         padding: 0 2px;
         white-space: nowrap; //不换行

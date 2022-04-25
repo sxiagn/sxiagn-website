@@ -1,18 +1,18 @@
 <template>
   <div class="container">
-    <TextHeader :title="textDetailData.title" />
+    <ArticleHeader :title="articleDetailData.title" />
     <div v-highlight class="text-content">
-      <div class="v-html" v-html="textDetailData.contentDesc" />
+      <div class="v-html" v-html="articleDetailData.contentDesc" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { onMounted, reactive } from 'vue';
-import { getTextDetails } from '../api/index';
-import TextHeader from '../components/text-header.vue';
+import { getArticleDetails } from '../api/index';
+import ArticleHeader from '../components/article-header.vue';
 
-const textDetailData = reactive({
+const articleDetailData = reactive({
   title: '',
   contentDesc: '',
   createTime: ''
@@ -23,11 +23,11 @@ interface Props {
 const props = defineProps<Props>();
 
 const handleGetTextDetails = async () => {
-  const { data: res } = await getTextDetails({ id: props.id });
+  const { data: res } = await getArticleDetails({ id: props.id });
   if (res.length) return;
-  textDetailData.title = res.title;
-  textDetailData.contentDesc = res.contentDesc;
-  textDetailData.createTime = res.createTime;
+  articleDetailData.title = res.title;
+  articleDetailData.contentDesc = res.contentDesc;
+  articleDetailData.createTime = res.createTime;
 };
 onMounted(() => {
   handleGetTextDetails();

@@ -32,26 +32,31 @@ request.interceptors.response.use(
     }
     return Promise.reject(res);
   },
-  err => {
+  error => {
     loadingInstance.close();
-    handleError(err.response.status);
-    return Promise.reject(err);
+    handleError(error);
+    return Promise.reject(error);
   }
 );
-function handleError(status: number) {
-  switch (status) {
-    case 403:
-      ElMessage.error({ message: '权限不足，请联系管理员' });
-      break;
-    case 404:
-      ElMessage.error({ message: '服务器异常，请尝试' });
-      break;
-    case 504:
-      ElMessage.error({ message: '服务器异常，请尝试' });
-      break;
-    default:
-      ElMessage.error({ message: '未知错误' });
-      break;
+function handleError(error: { code: string; message: string; response: { status: number } }) {
+  if (error.code === 'ECONNABORTED' || error.message === 'Network Error' || error.message.includes('timeout')) {
+    ElMessage.error('请求超时，请稍后重试');
+  }
+  if (error.response) {
+    switch (error.response.status) {
+      case 403:
+        ElMessage.error('权限不足，请联系管理员');
+        break;
+      case 404:
+        ElMessage.error('请求路径错误，请检查');
+        break;
+      case 504:
+        ElMessage.error('服务器异常，请稍后重试');
+        break;
+      default:
+        ElMessage.error('系统异常，请稍后重试');
+        break;
+    }
   }
 }
 

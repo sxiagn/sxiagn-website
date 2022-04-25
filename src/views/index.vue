@@ -2,7 +2,7 @@
   <div class="container">
     <div class="container-center">
       <el-row :gutter="20" class="wrap">
-        <el-col v-for="item in TextTheme" :key="item.title" :span="8" class="wrap-list">
+        <el-col v-for="item in ArticleTheme" :key="item.title" :span="8" class="wrap-list">
           <div class="wrap-item" @click="handleToList(item)">
             <div class="item-desc">
               <p>{{ item.title }}</p>
@@ -35,7 +35,7 @@
 import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
-import { TextTheme } from '../utils/text-option';
+import { ArticleTheme } from '../utils/article-option';
 import { problemFeedBack } from '../api/index';
 
 const formData = reactive({
@@ -44,7 +44,7 @@ const formData = reactive({
 const router = useRouter();
 const handleToList = (item: { title: any; textType: any }) => {
   router.push({
-    name: 'TextList',
+    name: 'ArticleList',
     query: {
       title: item.title,
       textType: item.textType

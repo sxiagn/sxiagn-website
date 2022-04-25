@@ -5,9 +5,9 @@
         <component :is="Component" />
       </transition>
     </router-view>
-    <ToTop v-show="appMainData.showUp" class="to-commont" @scroll-to="handleScrollTo" />
-    <GoBack v-show="$route.name !== 'Index'" class="go-back to-commont" />
-    <ToHome v-show="$route.name !== 'Index'" class="to-home to-commont" />
+    <ToTop v-show="appMainData.showUp" @scroll-to="handleScrollTo" />
+    <GoBack v-show="$route.name !== 'Index'" />
+    <ToHome v-show="$route.name !== 'Index'" />
   </el-main>
 </template>
 
@@ -55,17 +55,6 @@ onUnmounted(() => {
 .app-main {
   position: relative;
   padding: 0 20px 30px 20px;
-  .to-commont {
-    position: fixed;
-    right: 25px;
-    bottom: 130px;
-  }
-  .go-back {
-    bottom: 90px;
-  }
-  .to-home {
-    bottom: 50px;
-  }
 }
 
 .router-fade-enter-active,

@@ -1,6 +1,6 @@
 <template>
-  <div class="text-header">
-    <div class="text-title">
+  <div class="article-header">
+    <div class="article-title">
       <i class="el-icon-notebook-2" />
       <span>{{ title }}</span>
     </div>
@@ -22,13 +22,13 @@ withDefaults(defineProps<Props>(), {
 </script>
 
 <style lang="scss" scoped>
-.text-header {
+.article-header {
   position: sticky;
   top: 0;
   padding-top: 30px;
   background-color: #fff;
   z-index: 1;
-  .text-title {
+  .article-title {
     height: 50px;
     width: 100%;
     background-color: #409eff;

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <TextHeader title="发表文章" />
+    <ArticleHeader title="发表文章" />
     <div class="text-add">
       <el-form
         ref="ruleForm"
@@ -44,10 +44,10 @@ import { ref, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
-import TextHeader from '@/components/text-header.vue';
+import ArticleHeader from '@/components/article-header.vue';
 import Wangeditor from '@/components/wangeditor.vue';
 import { contentTypeList } from '../utils/text-option';
-import { addTextApi } from '../api/index';
+import { AddarticleApi } from '../api/index';
 
 const ruleForm = ref<FormInstance>();
 const router = useRouter();
@@ -85,7 +85,7 @@ const handleSend = async (formEl: FormInstance | undefined) => {
         ...FormData,
         contentDesc: textEditData.contentDesc
       };
-      await addTextApi(params);
+      await AddarticleApi(params);
       ElMessage.success('执行成功');
       router.push('/index');
     }

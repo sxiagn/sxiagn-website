@@ -106,12 +106,13 @@ const handleClose = () => {
 }
 .close {
   width: 100%;
-  height: 24px;
-  padding: 5px;
+  height: 30px;
+  padding: 3px;
   position: absolute;
-  bottom: 6px;
+  bottom: 0;
   left: 0;
   background-color: #f1f1f1;
+  line-height: 30px;
   .close-icon {
     cursor: pointer;
   }
