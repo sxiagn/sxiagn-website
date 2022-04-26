@@ -39,7 +39,6 @@ onMounted(() => {
   position: relative;
   .text-content {
     width: 100%;
-    padding: 0 2px;
   }
 }
 >>> .v-html {

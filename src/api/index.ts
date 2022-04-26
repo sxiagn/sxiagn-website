@@ -1,5 +1,5 @@
 import request from '../utils/request';
-import { ADD_ARTICLE, ARTICLE_LIST, ARTICLE__DETAILS, FEED_BACK } from './url';
+import { ADD_ARTICLE, ARTICLE_LIST, ARTICLE_DETAILS, FEED_BACK, ARTICLE_LOGIN } from './url';
 
 // 发表文章
 interface Addarticle {
@@ -34,7 +34,7 @@ interface ArticleDetails {
 export function getArticleDetails(params: ArticleDetails) {
   return request({
     method: 'get',
-    url: ARTICLE__DETAILS,
+    url: ARTICLE_DETAILS,
     params
   });
 }
@@ -48,6 +48,18 @@ export function problemFeedBack(data: FeedBack) {
   return request({
     method: 'post',
     url: FEED_BACK,
+    data
+  });
+}
+// 登录
+interface UserLogin {
+  userName: string;
+  password: string;
+}
+export function userLogin(data: UserLogin) {
+  return request({
+    method: 'post',
+    url: ARTICLE_LOGIN,
     data
   });
 }

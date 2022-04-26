@@ -29,8 +29,13 @@ const routes = [
       },
       {
         path: 'article-send',
-        name: 'ArticleEdit',
+        name: 'ArticleSend',
         component: () => import('@/views/article-send.vue')
+      },
+      {
+        path: 'login',
+        name: 'Login',
+        component: () => import('@/views/to-login.vue')
       }
     ]
   }

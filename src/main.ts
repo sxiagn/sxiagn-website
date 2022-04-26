@@ -6,6 +6,7 @@ import 'element-plus/dist/index.css';
 import hljs from 'highlight.js';
 import App from './App.vue';
 import router from './router';
+import store from './store/index';
 // 代码高亮的js
 import 'highlight.js/styles/googlecode.css';
 // 导入路由权限控制js
@@ -23,4 +24,4 @@ app.directive('highlight', el => {
   });
 });
 
-app.use(ElementPlus, { size: 'mini' }).use(router).mount('#app');
+app.use(ElementPlus, { size: 'mini' }).use(store).use(router).mount('#app');

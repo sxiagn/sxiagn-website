@@ -46,7 +46,7 @@ import { ElMessage } from 'element-plus';
 import type { FormInstance, FormRules } from 'element-plus';
 import ArticleHeader from '@/components/article-header.vue';
 import Wangeditor from '@/components/wangeditor.vue';
-import { contentTypeList } from '../utils/text-option';
+import { contentTypeList } from '../utils/article-option';
 import { AddarticleApi } from '../api/index';
 
 const ruleForm = ref<FormInstance>();

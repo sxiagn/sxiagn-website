@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { ElMessage, ElLoading } from 'element-plus';
+import router from '@/router';
+import { useInfoStore } from '../store/user-info';
 
 const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
@@ -14,6 +16,10 @@ request.interceptors.request.use(
       target: document.getElementById('app-main') as HTMLElement,
       text: 'loading'
     });
+    // 添加请求头，token
+    const userInfoStore = useInfoStore();
+    const token = userInfoStore.getTokenFormLocal();
+    config.headers.Authorization = token;
     return config;
   },
   error => {
@@ -28,6 +34,11 @@ request.interceptors.response.use(
     loadingInstance.close();
     if (res.status === 200) {
       if (res.data.code === -1) ElMessage.error(res.data.msg);
+      if (res.data.code === 403) {
+        ElMessage.error(res.data.msg);
+        router.push({ path: '/login', replace: true });
+        return Promise.reject(res);
+      }
       return res.data;
     }
     return Promise.reject(res);
