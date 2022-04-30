@@ -46,7 +46,7 @@ const handleClose = () => {
       }
       appAsideData.asideWidth = `${parseInt(appAsideData.asideWidth, 10) - step}px`;
     }
-  }, 20);
+  }, 15);
   appAsideData.textAlign = appAsideData.isClose ? 'right' : 'center';
 };
 </script>

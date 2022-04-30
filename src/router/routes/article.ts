@@ -33,6 +33,11 @@ const routes = [
         component: () => import('@/views/article-send.vue')
       },
       {
+        path: 'article-manage',
+        name: 'ArticleManage',
+        component: () => import('@/views/article-manage.vue')
+      },
+      {
         path: 'login',
         name: 'Login',
         component: () => import('@/views/to-login.vue')

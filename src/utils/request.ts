@@ -33,7 +33,10 @@ request.interceptors.response.use(
   res => {
     loadingInstance.close();
     if (res.status === 200) {
-      if (res.data.code === -1) ElMessage.error(res.data.msg);
+      if (res.data.code === -1) {
+        ElMessage.error(res.data.msg);
+        return Promise.reject(res);
+      }
       if (res.data.code === 403) {
         ElMessage.error(res.data.msg);
         router.push({ path: '/login', replace: true });

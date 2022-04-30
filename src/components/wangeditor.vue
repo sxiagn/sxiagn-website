@@ -34,7 +34,8 @@ watch(editorHtml, n => {
 });
 // 工具栏配置，excludeKeys为不想要展示的工具
 const toolbarConfig: Partial<IToolbarConfig> = {
-  excludeKeys: ['group-image', 'group-video', 'emotion']
+  // excludeKeys: ['group-image', 'group-video', 'emotion']
+  excludeKeys: ['group-video', 'emotion']
 };
 // 编辑器配置
 const editorConfig: Partial<IEditorConfig> = {

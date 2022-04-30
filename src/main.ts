@@ -3,6 +3,7 @@ import './styles/index.scss';
 import ElementPlus from 'element-plus';
 import * as ElIcons from '@element-plus/icons-vue';
 import 'element-plus/dist/index.css';
+import locale from 'element-plus/lib/locale/lang/zh-cn';
 import hljs from 'highlight.js';
 import App from './App.vue';
 import router from './router';
@@ -24,4 +25,4 @@ app.directive('highlight', el => {
   });
 });
 
-app.use(ElementPlus, { size: 'mini' }).use(store).use(router).mount('#app');
+app.use(router).use(ElementPlus, { locale, size: 'small' }).use(store).mount('#app');
