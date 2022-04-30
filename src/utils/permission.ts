@@ -1,6 +1,6 @@
 import NProgress from 'nprogress';
 import router from '../router/index';
-// 进度条插件
+// 路由进度条插件
 import 'nprogress/nprogress.css';
 import { useInfoStore } from '../store/user-info';
 
