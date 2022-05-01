@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { ElMessage, ElLoading } from 'element-plus';
-import router from '@/router';
+import { ElMessage, ElLoading, MessageParamsTyped } from 'element-plus';
+import router from '../router/index';
 import { useInfoStore } from '../store/user-info';
 
 const request = axios.create({
@@ -11,7 +11,7 @@ const request = axios.create({
 // 请求拦截
 let loadingInstance: { close: () => void };
 request.interceptors.request.use(
-  config => {
+  (config: any) => {
     loadingInstance = ElLoading.service({
       target: document.getElementById('app-main') as HTMLElement,
       text: 'loading'
@@ -19,7 +19,8 @@ request.interceptors.request.use(
     // 添加请求头，token
     const userInfoStore = useInfoStore();
     const token = userInfoStore.getTokenFormLocal();
-    config.headers.Authorization = token;
+    // 后台需要token前拼接Bearer
+    config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
   error => {
@@ -37,11 +38,6 @@ request.interceptors.response.use(
         ElMessage.error(res.data.msg);
         return Promise.reject(res);
       }
-      if (res.data.code === 403) {
-        ElMessage.error(res.data.msg);
-        router.push({ path: '/login', replace: true });
-        return Promise.reject(res);
-      }
       return res.data;
     }
     return Promise.reject(res);
@@ -52,14 +48,19 @@ request.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-function handleError(error: { code: string; message: string; response: { status: number } }) {
+function handleError(error: {
+  code: string;
+  message: string | string[];
+  response: { status: any; data: { msg: MessageParamsTyped | undefined } };
+}) {
   if (error.code === 'ECONNABORTED' || error.message === 'Network Error' || error.message.includes('timeout')) {
     ElMessage.error('请求超时，请稍后重试');
   }
   if (error.response) {
     switch (error.response.status) {
       case 403:
-        ElMessage.error('权限不足，请联系管理员');
+        ElMessage.error(error.response.data.msg);
+        router.push({ path: '/login', replace: true });
         break;
       case 404:
         ElMessage.error('请求路径错误，请检查');
