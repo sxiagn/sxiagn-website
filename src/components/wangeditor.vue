@@ -26,7 +26,17 @@ import { IEditorConfig, IToolbarConfig, createToolbar } from '@wangeditor/editor
 const editorRef = shallowRef();
 // 内容 HTML
 const editorHtml = ref('');
-
+// 编辑的时候，通过路由传入id
+interface Props {
+  editContent?: string;
+}
+const props = defineProps<Props>();
+watch(
+  () => props.editContent,
+  n => {
+    editorHtml.value = n as string;
+  }
+);
 // 将输入内容抛出去
 const emits = defineEmits(['editor-html']);
 watch(editorHtml, n => {

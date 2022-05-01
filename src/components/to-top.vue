@@ -11,6 +11,6 @@ const handleScrollTo = () => {
 
 <style lang="scss" scoped>
 .to-top {
-  bottom: 130px;
+  bottom: 150px;
 }
 </style>

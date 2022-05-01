@@ -1,6 +1,7 @@
 import request from '../utils/request';
 import {
-  ADD_ARTICLE,
+  ARTICLE_ADD,
+  ARTICLE_EDIT,
   ARTICLE_LIST,
   ARTICLE_DETAILS,
   FEED_BACK,
@@ -10,16 +11,24 @@ import {
 } from './url';
 
 // 发表文章
-interface Addarticle {
+interface AddOrEditArticle {
   textType: string | number;
   title: string;
   contentDesc: string;
-  // createTime: number;
+  id?: number | string;
 }
-export function AddarticleApi(data: Addarticle) {
+export function addArticleApi(data: AddOrEditArticle) {
   return request({
     method: 'post',
-    url: ADD_ARTICLE,
+    url: ARTICLE_ADD,
+    data
+  });
+}
+// 编辑文章
+export function editArticleApi(data: AddOrEditArticle) {
+  return request({
+    method: 'post',
+    url: ARTICLE_EDIT,
     data
   });
 }

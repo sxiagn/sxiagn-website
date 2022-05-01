@@ -1,4 +1,5 @@
-export const ADD_ARTICLE = 'add/article';
+export const ARTICLE_ADD = '/article/add';
+export const ARTICLE_EDIT = '/article/edit';
 export const ARTICLE_LIST = '/article/list/byTextType';
 export const ARTICLE_ALL_LIST = '/article/getAllArticleList';
 export const ARTICLE_DETAILS = '/article/details';

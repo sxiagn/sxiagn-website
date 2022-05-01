@@ -1,8 +1,10 @@
 <template>
   <div class="article-header">
     <div class="article-title">
-      <i class="el-icon-notebook-2" />
-      <span>{{ title }}</span>
+      <div class="title-desc">{{ title }}</div>
+      <div class="title-slot">
+        <slot name="title" />
+      </div>
     </div>
     <div class="bg-line">
       <div v-for="item in 3" :key="item" />
@@ -36,11 +38,8 @@ withDefaults(defineProps<Props>(), {
     color: #fff;
     font-weight: 600;
     padding: 0 20px;
-
-    .el-icon-notebook-2 {
-      font-size: 20px;
-      padding-right: 5px;
-    }
+    display: flex;
+    justify-content: space-between;
   }
 
   .bg-line {

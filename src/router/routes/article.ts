@@ -23,14 +23,23 @@ const routes = [
         path: 'article-details',
         name: 'ArticleDetails',
         component: () => import('@/views/article-details.vue'),
-        props: (route: { query: { id: any } }) => ({
+        props: (route: { query: { id: number | string } }) => ({
           id: route.query.id
         })
       },
+      // 发表文章与编辑文章路由不同，但公用一个vue文件
       {
-        path: 'article-send',
-        name: 'ArticleSend',
-        component: () => import('@/views/article-send.vue')
+        path: 'article-add',
+        name: 'ArticleAdd',
+        component: () => import('@/views/article-addoredit.vue')
+      },
+      {
+        path: 'article-edit',
+        name: 'ArticleEdit',
+        component: () => import('@/views/article-addoredit.vue'),
+        props: (route: { query: { id: number | string } }) => ({
+          id: route.query.id
+        })
       },
       {
         path: 'article-manage',

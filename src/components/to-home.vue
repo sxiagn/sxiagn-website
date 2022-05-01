@@ -8,6 +8,6 @@
 
 <style lang="scss" scoped>
 .to-home {
-  bottom: 50px;
+  bottom: 30px;
 }
 </style>

@@ -8,6 +8,6 @@
 
 <style lang="scss" scoped>
 .go-back {
-  bottom: 90px;
+  bottom: 110px;
 }
 </style>

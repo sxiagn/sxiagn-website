@@ -18,7 +18,7 @@ const articleDetailData = reactive({
   createTime: ''
 });
 interface Props {
-  id: string;
+  id: number | string;
 }
 const props = defineProps<Props>();
 

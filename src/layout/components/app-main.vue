@@ -7,6 +7,7 @@
     </router-view>
     <ToTop v-show="appMainData.showUp" @scroll-to="handleScrollTo" />
     <GoBack v-show="$route.name !== 'Index'" />
+    <ToManage v-show="$route.name !== 'Index'" />
     <ToHome v-show="$route.name !== 'Index'" />
   </el-main>
 </template>
@@ -16,6 +17,7 @@ import { reactive, onUnmounted } from 'vue';
 import ToTop from '@/components/to-top.vue';
 import ToHome from '@/components/to-home.vue';
 import GoBack from '@/components/go-back.vue';
+import ToManage from '@/components/to-manage.vue';
 
 interface AppMainData {
   timer: NodeJS.Timer | null;

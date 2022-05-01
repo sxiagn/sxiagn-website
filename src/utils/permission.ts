@@ -7,7 +7,7 @@ import { useInfoStore } from '../store/user-info';
 // 全局路由做权限控制
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
-  const permissionRoutes = ['/article-send'];
+  const permissionRoutes = ['/article-add', '/article-edit', '/article-manage'];
   if (permissionRoutes.includes(to.path)) {
     const userInfoStore = useInfoStore();
     const token = userInfoStore.getTokenFormLocal();
