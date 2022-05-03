@@ -22,6 +22,7 @@
 import { reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import type { FormInstance, FormRules } from 'element-plus';
+import AESUTIL from '../utils/crypto';
 import { userLogin } from '../api/index';
 import { useInfoStore } from '../store/user-info';
 
@@ -42,7 +43,11 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate(async valid => {
     if (valid) {
-      const { data } = await userLogin(ruleForm);
+      const params = {
+        userName: AESUTIL.encrypte(ruleForm.userName),
+        password: AESUTIL.encrypte(ruleForm.password)
+      };
+      const { data } = await userLogin(params);
       userInfoStore.setTokenTolocal(data);
       router.push('/index');
     }
