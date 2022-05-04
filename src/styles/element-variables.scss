@@ -31,3 +31,10 @@
     background-color: #85ce61;
   }
 }
+
+// 媒体查询，做移动端适配
+@media (max-width: 767px) {
+  .hide-aside {
+    display: none;
+  }
+}

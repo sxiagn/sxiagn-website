@@ -50,6 +50,11 @@ const routes = [
         path: 'login',
         name: 'Login',
         component: () => import('@/views/to-login.vue')
+      },
+      {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: () => import('@/views/not-found.vue')
       }
     ]
   }

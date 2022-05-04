@@ -61,13 +61,15 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
   width: 100%;
   padding-top: 30px;
   .bg {
-    background-color: #f1f1f1;
+    // background-color: #f1f1f1;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    background: url('../assets/img/login-bg.jpg');
+    background-size: 100% 100%;
     .login-wrap {
-      width: 60%;
+      width: 500px;
       height: 300px;
       background-color: #fff;
       border-radius: 5px;

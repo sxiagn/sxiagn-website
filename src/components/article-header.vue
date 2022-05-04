@@ -31,7 +31,8 @@ withDefaults(defineProps<Props>(), {
   background-color: #fff;
   z-index: 1;
   .article-title {
-    height: 50px;
+    min-height: 50px;
+    line-height: 2;
     width: 100%;
     background-color: #409eff;
     line-height: 50px;

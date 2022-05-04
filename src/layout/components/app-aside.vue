@@ -1,5 +1,5 @@
 <template>
-  <el-aside class="app-aside" :style="{ width: appAsideData.asideWidth }">
+  <el-aside class="app-aside hide-aside" :style="{ width: appAsideData.asideWidth }">
     <div v-show="appAsideData.isClose" class="user-info">
       <img src="../../assets/img/user-head.png" alt="头像" @click="$router.push({ name: 'Index' })" />
       <p class="user-name">年年有余</p>
