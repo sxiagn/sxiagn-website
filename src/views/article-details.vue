@@ -33,22 +33,28 @@ onMounted(() => {
   handleGetTextDetails();
 });
 </script>
-
+<style lang="scss">
+.v-html {
+  table {
+    border-collapse: collapse;
+  }
+  td,
+  th {
+    border: 1px solid #ccc;
+    padding: 8px 12px;
+  }
+  th {
+    background-color: #f1f1f1;
+  }
+  img {
+    width: 100%;
+  }
+}
+</style>
 <style lang="scss" scoped>
 .container {
   position: relative;
   .text-content {
-    width: 100%;
-  }
-}
->>> .v-html {
-  font-size: 12px;
-  margin: 20px;
-  p {
-    font-size: 12px;
-    padding-bottom: 6px;
-  }
-  img {
     width: 100%;
   }
 }
