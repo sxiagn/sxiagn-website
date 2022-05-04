@@ -7,7 +7,7 @@
         <div class="create-time">{{ item['createTime'] }}</div>
       </div>
     </div>
-    <div v-if="!textList.length" class="no-data">暂无数据</div>
+    <NoData :list="textList" />
   </div>
 </template>
 
@@ -16,6 +16,7 @@ import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import ArticleHeader from '../components/article-header.vue';
 import { getArticleList } from '../api/index';
+import NoData from '../components/no-data.vue';
 
 interface Props {
   title: string;
@@ -73,12 +74,6 @@ const handleToDetails = (item: { id: any }) => {
         width: 106px;
       }
     }
-  }
-  .no-data {
-    padding: 30px 0;
-    background-color: #ebebeb;
-    text-align: center;
-    font-size: 12px;
   }
 }
 </style>

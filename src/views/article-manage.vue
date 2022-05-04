@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div v-if="!ArticleList.length" class="no-data">暂无数据</div>
+    <NoData :list="ArticleList" />
   </div>
 </template>
 
@@ -38,6 +38,7 @@ import { InfoFilled } from '@element-plus/icons-vue';
 import { ElMessage } from 'element-plus';
 import ArticleHeader from '../components/article-header.vue';
 import { getAllArticleList, deleteArticle } from '../api/index';
+import NoData from '../components/no-data.vue';
 
 const router = useRouter();
 const ArticleList = ref([]);
@@ -112,12 +113,6 @@ const handleToAddArticle = () => {
         }
       }
     }
-  }
-  .no-data {
-    padding: 30px 0;
-    background-color: #ebebeb;
-    text-align: center;
-    font-size: 12px;
   }
 }
 </style>

@@ -11,7 +11,7 @@
         label-width="100px"
       >
         <el-row :gutter="20">
-          <el-col :span="8">
+          <el-col :span="12">
             <el-form-item label="文章类别" prop="textType">
               <el-select v-model="FormData.textType" clearable placeholder="请选择文章类别">
                 <el-option v-for="item in contentTypeList" :key="item.value" :label="item.label" :value="item.value" />

@@ -26,23 +26,16 @@ export default defineConfig(({ mode }) => {
         }
       }
     },
-    css:{
-      postcss:{
+    css: {
+      postcss: {
         plugins: [
           // css自动添加浏览器前缀
           require('autoprefixer')({
-            overrideBrowserslist: [
-              'Android 4.1',
-              'iOS 7.1',
-              'Chrome > 31',
-              'ff > 31',
-              'ie >= 8',
-              '> 1%',
-            ],
-            grid: true,
+            overrideBrowserslist: ['Android 4.1', 'iOS 7.1', 'Chrome > 31', 'ff > 31', 'ie >= 8', '> 1%'],
+            grid: true
           }),
-          require('postcss-flexbugs-fixes'),
-        ],
+          require('postcss-flexbugs-fixes')
+        ]
       }
     }
   };
