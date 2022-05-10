@@ -31,6 +31,7 @@ import type { FormInstance, FormRules } from 'element-plus';
 import AESUTIL from '../utils/crypto';
 import { userLogin } from '../api/index';
 import { useInfoStore } from '../store/user-info';
+import { routeInfoStore } from '../store/route-info';
 
 const router = useRouter();
 const userInfoStore = useInfoStore();
@@ -55,7 +56,9 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
       };
       const { data } = await userLogin(params);
       userInfoStore.setTokenTolocal(data);
-      router.push('/index');
+      const routeStore = routeInfoStore();
+      const path = routeStore.getBeforeRouteFormLocal() || '/index';
+      router.push(path);
     }
   });
 };

@@ -31,6 +31,7 @@ module.exports = {
     'global-require': 0,
     'vue/no-v-html': 'off',
     'import/extensions': 'off',
+    'no-unused-expressions': 'off',
     // 'editor.formatOnSave': true,
     'import/no-extraneous-dependencies': 'off',
     'import/order': [
