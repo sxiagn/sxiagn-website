@@ -59,6 +59,7 @@ const handleConfirm = async () => {
     isFinish: false
   };
   await problemFeedBack(params);
+  formData.textarea = '';
   ElMessage.success('执行成功');
 };
 </script>
