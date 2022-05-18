@@ -11,7 +11,7 @@ router.beforeEach(async (to, from, next) => {
   const permissionRoutes = ['/article-add', '/article-edit', '/article-manage'];
   if (permissionRoutes.includes(to.path)) {
     const userStore = useInfoStore();
-    const token = userStore.getTokenFormLocal();
+    const token = userStore.getToken();
     if (!token) {
       const routeStore = routeInfoStore();
       routeStore.setBeforeRouteTolocal(to.fullPath);

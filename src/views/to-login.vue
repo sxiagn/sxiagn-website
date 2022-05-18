@@ -55,7 +55,7 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
         password: AESUTIL.encrypte(ruleForm.password)
       };
       const { data } = await userLogin(params);
-      userInfoStore.setTokenTolocal(data);
+      userInfoStore.setToken(data);
       const routeStore = routeInfoStore();
       const path = routeStore.getBeforeRouteFormLocal() || '/index';
       router.push(path);

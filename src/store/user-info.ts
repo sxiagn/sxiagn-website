@@ -8,16 +8,20 @@ export const useInfoStore = defineStore({
     };
   },
   actions: {
-    setTokenTolocal(token: string) {
+    setToken(token: string) {
       this.token = token;
       sessionStorage.setItem('token', token);
     },
-    getTokenFormLocal() {
+    getToken() {
       const token = sessionStorage.getItem('token') || '';
       if (!this.token && sessionStorage.getItem('token')) {
         this.token = token;
       }
       return this.token;
+    },
+    removeToken() {
+      this.token = '';
+      sessionStorage.removeItem('token');
     }
   }
 });

@@ -3,6 +3,7 @@ import { ElMessage, ElLoading, MessageParamsTyped } from 'element-plus';
 import router from '../router/index';
 import { useInfoStore } from '../store/user-info';
 
+const userInfoStore = useInfoStore();
 const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 30000
@@ -17,8 +18,7 @@ request.interceptors.request.use(
       text: 'loading'
     });
     // 添加请求头，token
-    const userInfoStore = useInfoStore();
-    const token = userInfoStore.getTokenFormLocal();
+    const token = userInfoStore.getToken();
     // 后台需要token前拼接Bearer
     config.headers.Authorization = `Bearer ${token}`;
     return config;
@@ -60,6 +60,7 @@ function handleError(error: {
     switch (error.response.status) {
       case 403:
         ElMessage.error(error.response.data.msg);
+        userInfoStore.removeToken();
         router.push({ path: '/login', replace: true });
         break;
       case 404:
