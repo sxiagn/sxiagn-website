@@ -24,7 +24,6 @@ const props = defineProps<Props>();
 
 const handleGetTextDetails = async () => {
   const { data: res } = await getArticleDetails({ id: props.id });
-  if (res.length) return;
   articleDetailData.title = res.title;
   articleDetailData.contentDesc = res.contentDesc;
   articleDetailData.createTime = res.createTime;

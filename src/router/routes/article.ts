@@ -27,7 +27,7 @@ const routes = [
           id: route.query.id
         })
       },
-      // 发表文章与编辑文章路由不同，但公用一个vue文件
+      // 发表文章与编辑文章路由不同，但共用一个vue文件
       {
         path: 'article-add',
         name: 'ArticleAdd',

@@ -76,7 +76,6 @@ interface Props {
 const props = defineProps<Props>();
 const handleGetTextDetails = async () => {
   const { data: res } = await getArticleDetails({ id: props.id as string });
-  if (res.length) return;
   FormData.title = res.title;
   FormData.textType = res.textType;
   editContent.value = res.contentDesc;
