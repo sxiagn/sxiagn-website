@@ -63,7 +63,7 @@ function handleError(error: {
       case 403:
         ElMessage.error(error.response.data.msg);
         userInfoStore.removeToken();
-        router.push({ path: '/login', replace: true });
+        router.replace('/login');
         break;
       case 404:
         ElMessage.error('请求路径错误，请检查');

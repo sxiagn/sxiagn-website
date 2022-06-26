@@ -28,6 +28,11 @@ const routes = [
           textType: route.query.textType
         })
       },
+      {
+        path: 'article-preview',
+        name: 'ArticlePreview',
+        component: () => import('@/views/article-preview.vue')
+      },
       // 发表文章与编辑文章路由不同，但共用一个vue文件
       {
         path: 'article-add',

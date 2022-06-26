@@ -2,7 +2,8 @@
   <div class="container">
     <ArticleHeader title="发表文章">
       <template #title>
-        <el-button size="small" plain @click="handleSend(ruleForm)">发送</el-button>
+        <el-button size="small" plain @click="handleSendOrPreview(ruleForm, 'send')">发送</el-button>
+        <el-button size="small" plain @click="handleSendOrPreview(ruleForm, 'preview')">预览</el-button>
       </template>
     </ArticleHeader>
     <div class="text-add">
@@ -96,13 +97,21 @@ interface Params {
   contentDesc: string;
   id?: string | number;
 }
-const handleAddOrEditArticle = async () => {
+// 准备发送数据
+const handleAjaxParams = () => {
   const params: Params = {
     ...FormData,
     contentDesc: textEditData.contentDesc
   };
   if (isAddArticl.value) {
     params.id = props.id;
+  }
+  return params;
+};
+// 发送或者编辑发送请求
+const handleAddOrEditArticle = async () => {
+  const params = handleAjaxParams();
+  if (isAddArticl.value) {
     await editArticleApi(params);
   } else {
     await addArticleApi(params);
@@ -110,8 +119,17 @@ const handleAddOrEditArticle = async () => {
   ElMessage.success('执行成功');
   router.push('/index');
 };
-// 发送按钮
-const handleSend = async (formEl: FormInstance | undefined) => {
+// 预览
+const handlePreview = () => {
+  const params = handleAjaxParams();
+  sessionStorage.setItem('articlePreview', JSON.stringify(params));
+  const link = router.resolve({
+    path: '/article-preview'
+  });
+  window.open(link.href, '_blank');
+};
+// 发送与预览按钮
+const handleSendOrPreview = async (formEl: FormInstance | undefined, type: string) => {
   if (!formEl) return;
   await formEl.validate(async valid => {
     if (valid) {
@@ -119,7 +137,7 @@ const handleSend = async (formEl: FormInstance | undefined) => {
         ElMessage.warning('请输入文章内容');
         return;
       }
-      handleAddOrEditArticle();
+      type === 'send' ? handleAddOrEditArticle() : handlePreview();
     }
   });
 };
