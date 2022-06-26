@@ -1,6 +1,6 @@
 <template>
   <div class="right-button to-top" @click="$router.push({ name: 'ArticleManage' })">
-    <el-icon size="20" color="#fff"><management /></el-icon>
+    <el-icon size="20" color="#fff"><UserFilled /></el-icon>
   </div>
 </template>
 

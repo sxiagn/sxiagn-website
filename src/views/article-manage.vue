@@ -3,6 +3,7 @@
     <ArticleHeader title="博文管理">
       <template #title>
         <el-button size="small" plain @click="handleToAddArticle">写文章</el-button>
+        <el-button size="small" plain @click="handleFeedback">问题反馈管理</el-button>
       </template>
     </ArticleHeader>
     <div class="article-list">
@@ -83,6 +84,11 @@ const handleToEdit = (item: { id: number | string }) => {
 };
 const handleToAddArticle = () => {
   router.push({ name: 'ArticleAdd' });
+};
+
+// 问题反馈
+const handleFeedback = () => {
+  ElMessage.success('问题反馈功能即将上线，敬请期待~~');
 };
 </script>
 
