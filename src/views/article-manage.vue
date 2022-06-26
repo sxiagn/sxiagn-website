@@ -63,11 +63,12 @@ const handleDelete = async (item: { id: number; textType: string }, index: numbe
   ArticleList.value.splice(index, 1);
 };
 
-const handleToDetails = (item: { id: number | string }) => {
+const handleToDetails = (item: { id: number | string; textType: string | number }) => {
   router.push({
     name: 'ArticleDetails',
     query: {
-      id: item.id
+      id: item.id,
+      textType: item.textType
     }
   });
 };

@@ -37,7 +37,8 @@ const handleToDetails = (item: { id: any }) => {
   router.push({
     name: 'ArticleDetails',
     query: {
-      id: item.id
+      id: item.id,
+      textType: props.textType
     }
   });
 };

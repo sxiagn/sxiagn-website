@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <ArticleHeader title="发表文章" />
+    <ArticleHeader title="发表文章">
+      <template #title>
+        <el-button size="small" plain @click="handleSend(ruleForm)">发送</el-button>
+      </template>
+    </ArticleHeader>
     <div class="text-add">
       <el-form
         ref="ruleForm"
@@ -16,11 +20,6 @@
               <el-select v-model="FormData.textType" clearable placeholder="请选择文章类别">
                 <el-option v-for="item in contentTypeList" :key="item.value" :label="item.label" :value="item.value" />
               </el-select>
-            </el-form-item>
-          </el-col>
-          <el-col :span="8">
-            <el-form-item class="send-content" label="发送">
-              <el-button type="primary" @click="handleSend(ruleForm)">发送</el-button>
             </el-form-item>
           </el-col>
         </el-row>

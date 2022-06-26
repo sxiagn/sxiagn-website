@@ -13,6 +13,8 @@ const request = axios.create({
 let loadingInstance: { close: () => void };
 request.interceptors.request.use(
   (config: any) => {
+    // loading指定target后，每次返回的loadingInstance都是单独的实例，如果当前有loading先关闭再开启，否则同时发送多个请求的时候loading关闭不了
+    if (loadingInstance) loadingInstance.close();
     loadingInstance = ElLoading.service({
       target: document.getElementById('app-main') as HTMLElement,
       text: 'loading'

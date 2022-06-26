@@ -23,8 +23,9 @@ const routes = [
         path: 'article-details',
         name: 'ArticleDetails',
         component: () => import('@/views/article-details.vue'),
-        props: (route: { query: { id: number | string } }) => ({
-          id: route.query.id
+        props: (route: { query: { id: string; textType: string } }) => ({
+          id: route.query.id,
+          textType: route.query.textType
         })
       },
       // 发表文章与编辑文章路由不同，但共用一个vue文件
@@ -50,6 +51,11 @@ const routes = [
         path: 'login',
         name: 'Login',
         component: () => import('@/views/to-login.vue')
+      },
+      {
+        path: 'to-test',
+        name: 'ToTest',
+        component: () => import('@/views/to-test.vue')
       },
       {
         path: '/:pathMatch(.*)*',
