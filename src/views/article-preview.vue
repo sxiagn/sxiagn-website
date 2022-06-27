@@ -5,19 +5,22 @@
         <el-button size="small" plain @click="handleSend">发送</el-button>
       </template>
     </ArticleHeader>
-    <div v-highlight class="text-content">
-      <div class="v-html" v-html="articleDetailData.contentDesc" />
-    </div>
+    <template v-if="showHighLight">
+      <div v-highlight class="text-content">
+        <div class="v-html" v-html="articleDetailData.contentDesc" />
+      </div>
+    </template>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { reactive, onMounted } from 'vue';
+import { reactive, onMounted, ref, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import ArticleHeader from '../components/article-header.vue';
 import { addArticleApi, editArticleApi } from '../api/index';
 
+const showHighLight = ref(false);
 const articleDetailData = reactive({
   title: '',
   contentDesc: '',
@@ -37,9 +40,12 @@ const handleSend = async () => {
   if (window.opener && !window.opener.closed) window.opener.close();
   router.replace('/index');
 };
-onMounted(() => {
+onMounted(async () => {
+  // 加入showHighLight主要是解决插件highlight.js控制台HTML警告
   const articleInfo = JSON.parse(sessionStorage.getItem('articlePreview') as string);
   Object.assign(articleDetailData, articleInfo);
+  await nextTick();
+  showHighLight.value = true;
 });
 </script>
 <style lang="scss">
