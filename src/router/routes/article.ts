@@ -1,3 +1,5 @@
+import { PERMISSION_ROUTES } from '../../utils/const';
+
 const routes = [
   {
     path: '/',
@@ -29,18 +31,18 @@ const routes = [
         })
       },
       {
-        path: 'article-preview',
+        path: PERMISSION_ROUTES.ArticlePreview,
         name: 'ArticlePreview',
         component: () => import('@/views/article-preview.vue')
       },
       // 发表文章与编辑文章路由不同，但共用一个vue文件
       {
-        path: 'article-add',
+        path: PERMISSION_ROUTES.ArticleAdd,
         name: 'ArticleAdd',
         component: () => import('@/views/article-addoredit.vue')
       },
       {
-        path: 'article-edit',
+        path: PERMISSION_ROUTES.ArticleEdit,
         name: 'ArticleEdit',
         component: () => import('@/views/article-addoredit.vue'),
         props: (route: { query: { id: number | string } }) => ({
@@ -48,9 +50,14 @@ const routes = [
         })
       },
       {
-        path: 'article-manage',
+        path: PERMISSION_ROUTES.ArticleManage,
         name: 'ArticleManage',
         component: () => import('@/views/article-manage.vue')
+      },
+      {
+        path: PERMISSION_ROUTES.ProblemManage,
+        name: 'ProblemManage',
+        component: () => import('@/views/problem-manage.vue')
       },
       {
         path: 'login',

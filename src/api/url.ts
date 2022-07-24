@@ -6,3 +6,7 @@ export const ARTICLE_DETAILS = '/article/details';
 export const FEED_BACK = '/problem/feedback';
 export const ARTICLE_LOGIN = '/article/login';
 export const ARTICLE_DELETE = '/article/delete/byIdAndTextTye';
+export const ARTICLE_HOT = '/article/getHotArticleList';
+export const PROBLEM_LIST = '/article/getAllProblemList';
+export const DELETE_PROBLEM = '/problem/delete/byId';
+export const ANSWER_PROBLEM = '/problem/answer';

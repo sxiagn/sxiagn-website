@@ -4,12 +4,13 @@ import router from '../router/index';
 import 'nprogress/nprogress.css';
 import { useInfoStore } from '../store/user-info';
 import { routeInfoStore } from '../store/route-info';
+import { PERMISSION_ROUTES } from './const';
 
 // 全局路由做权限控制
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
-  const permissionRoutes = ['/article-add', '/article-edit', '/article-manage'];
-  if (permissionRoutes.includes(to.path)) {
+  const permissionRoutes = Object.keys(PERMISSION_ROUTES);
+  if (permissionRoutes.includes(to.name as string)) {
     const userStore = useInfoStore();
     const token = userStore.getToken();
     if (!token) {

@@ -88,7 +88,7 @@ const handleToAddArticle = () => {
 
 // 问题反馈
 const handleFeedback = () => {
-  ElMessage.success('问题反馈功能即将上线，敬请期待~~');
+  router.push({ name: 'ProblemManage' });
 };
 </script>
 

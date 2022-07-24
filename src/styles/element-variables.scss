@@ -32,6 +32,17 @@
   }
 }
 
+// 抽屉公共样式，需要使用custom-class="common-drawer"指定自定义类名
+.common-drawer {
+  .el-drawer__body {
+    border-bottom: 1px solid #dedede;
+    padding: 30px;
+  }
+  .el-drawer__footer {
+    padding-top: 20px;
+  }
+}
+
 // 媒体查询，做移动端适配
 @media (max-width: 767px) {
   .hide-aside {
