@@ -1,5 +1,6 @@
 <template>
   <div class="container-covid">
+    <ArticleHeader title="新冠疫情 - 重视自身健康，做好自我防护" :is-sticky="false" :is-pt="true" />
     <el-row :gutter="20" class="covid-box">
       <el-col :span="12" :sm="24" :xs="24" :md="12" class="covid-list">
         <div class="covid-item">
@@ -80,6 +81,7 @@
 <script lang="ts" setup>
 import { onMounted, ref, reactive, watch } from 'vue';
 import { covidPandemicApi } from '../../api/index';
+import ArticleHeader from '../article-header.vue';
 import CovidItem from './covid-item.vue';
 import CovidRource from './covid-rource.vue';
 import { handleToThirdPage } from './third-page';
@@ -272,6 +274,7 @@ onMounted(async () => {
 .container-covid {
   width: 100%;
   .covid-box {
+    padding-top: 8px;
     .covid-list {
       padding-bottom: 40px;
       .covid-item {

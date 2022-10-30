@@ -1,5 +1,5 @@
 <template>
-  <div class="article-header" :class="{ sticky: isSticky }">
+  <div class="article-header" :class="{ sticky: isSticky, 'pt-0': isPt }">
     <div class="article-title">
       <div class="title-desc">{{ title }}</div>
       <div class="title-slot">
@@ -17,10 +17,12 @@
 interface Props {
   title: string;
   isSticky?: boolean;
+  isPt?: boolean;
 }
 withDefaults(defineProps<Props>(), {
   title: 'Javascript/HTML/CSS',
-  isSticky: true
+  isSticky: true,
+  isPt: false
   // labels: () => ['one', 'two']
 });
 </script>
@@ -58,7 +60,9 @@ withDefaults(defineProps<Props>(), {
 .sticky {
   position: sticky;
   top: 0;
-
   z-index: 1;
+}
+.pt-0 {
+  padding-top: 0;
 }
 </style>

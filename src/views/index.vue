@@ -79,7 +79,7 @@ const handleConfirm = async () => {
 
 .article-category {
   .category-list {
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 
     .category-item {
       padding: 10px;
