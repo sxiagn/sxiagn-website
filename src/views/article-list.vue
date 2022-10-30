@@ -72,7 +72,7 @@ const handleToDetails = (item: { id: any }) => {
       .create-time {
         color: #409eff;
         font-size: 12px;
-        width: 106px;
+        width: 120px;
       }
     }
   }

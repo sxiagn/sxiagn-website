@@ -11,7 +11,8 @@ import {
   ARTICLE_HOT,
   PROBLEM_LIST,
   DELETE_PROBLEM,
-  ANSWER_PROBLEM
+  ANSWER_PROBLEM,
+  COVID_PANDEMIC
 } from './url';
 
 // 发表文章
@@ -153,5 +154,13 @@ export function problemAnswerApi(data: AnswerProblem) {
     method: 'post',
     url: ANSWER_PROBLEM,
     data
+  });
+}
+
+// 获取新冠数据
+export function covidPandemicApi() {
+  return request({
+    method: 'get',
+    url: COVID_PANDEMIC
   });
 }

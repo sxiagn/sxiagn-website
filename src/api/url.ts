@@ -10,3 +10,5 @@ export const ARTICLE_HOT = '/article/getHotArticleList';
 export const PROBLEM_LIST = '/article/getAllProblemList';
 export const DELETE_PROBLEM = '/problem/delete/byId';
 export const ANSWER_PROBLEM = '/problem/answer';
+// 新冠疫情新浪开放接口
+export const COVID_PANDEMIC = '/covid/pandemic/list';

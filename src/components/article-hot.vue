@@ -1,7 +1,7 @@
 <template>
   <div class="container-hot">
     <ArticleHeader title="热门推荐" :is-sticky="false" />
-    <div class="article-list">
+    <div v-if="textList.length" class="article-list">
       <div v-for="(item, index) in textList" :key="index" class="article-item" @click="handleToDetails(item)">
         <div class="article-title">{{ item['title'] }}</div>
         <div class="create-time">{{ item['createTime'] }}</div>
@@ -67,7 +67,7 @@ const handleToDetails = (item: { id: any }) => {
       .create-time {
         color: #409eff;
         font-size: 12px;
-        width: 106px;
+        width: 120px;
       }
     }
   }

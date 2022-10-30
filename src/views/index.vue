@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <CovidPandemic />
     <el-row :gutter="20" class="article-category">
       <el-col v-for="(item, index) in ArticleTheme" :key="item.title" :span="8" class="category-list">
         <div
@@ -41,6 +42,7 @@ import { ElMessage } from 'element-plus';
 import { ArticleTheme } from '../utils/article-option';
 import { problemFeedBack } from '../api/index';
 import ArticleHot from '../components/article-hot.vue';
+import CovidPandemic from '../components/covid/covid-pandemic.vue';
 
 const formData = reactive({
   textarea: ''
@@ -89,7 +91,6 @@ const handleConfirm = async () => {
       justify-content: center;
       align-items: center;
       color: #fff;
-
       .item-desc {
         text-align: center;
         word-wrap: break-word;

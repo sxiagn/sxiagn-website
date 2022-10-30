@@ -19,10 +19,23 @@ request.interceptors.request.use(
       target: document.getElementById('app-main') as HTMLElement,
       text: 'loading'
     });
+
     // 添加请求头，token
     const token = userInfoStore.getToken();
     // 后台需要token前拼接Bearer
     config.headers.Authorization = `Bearer ${token}`;
+    // 添加时间戳
+    if (config.method === 'post') {
+      config.data = {
+        ...config.data,
+        _t: new Date().getTime()
+      };
+    } else if (config.method === 'get') {
+      config.params = {
+        _t: new Date().getTime(),
+        ...config.params
+      };
+    }
     return config;
   },
   error => {

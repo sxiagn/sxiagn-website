@@ -8,6 +8,7 @@
     :close-on-click-modal="false"
     :before-close="handleClose"
     destroy-on-close
+    append-to-body
   >
     <div class="problem-wrap">
       <div class="problem-item">
