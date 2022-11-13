@@ -9,7 +9,7 @@
     <GoBack v-show="showBtn" />
     <ToManage v-show="showBtn" />
     <ToHome v-show="showBtn" />
-    <ApiHeader />
+    <ApiHeader v-if="$route.name === 'Index'" />
   </el-main>
 </template>
 
