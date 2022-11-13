@@ -9,6 +9,7 @@
     <GoBack v-show="showBtn" />
     <ToManage v-show="showBtn" />
     <ToHome v-show="showBtn" />
+    <ApiHeader />
   </el-main>
 </template>
 
@@ -19,6 +20,7 @@ import ToTop from '@/components/to-top.vue';
 import ToHome from '@/components/to-home.vue';
 import GoBack from '@/components/go-back.vue';
 import ToManage from '@/components/to-manage.vue';
+import ApiHeader from './api-header.vue';
 
 const route = useRoute();
 const showBtn = computed(() => route.name !== 'Index');

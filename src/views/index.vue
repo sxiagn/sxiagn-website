@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container api-index">
     <CovidPandemic />
     <el-row :gutter="20" class="article-category">
       <el-col v-for="(item, index) in ArticleTheme" :key="item.title" :span="8" class="category-list">

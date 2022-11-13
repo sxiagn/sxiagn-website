@@ -48,4 +48,13 @@
   .hide-aside {
     display: none;
   }
+  .app-main {
+    > .api-index {
+      padding-top: 235px !important;
+    }
+    .api-header {
+      display: block !important;
+    }
+  }
+  
 }
