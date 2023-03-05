@@ -27,8 +27,11 @@ module.exports = {
     '@vue/typescript/recommended'
   ],
   rules: {
+    '@typescript-eslint/no-var-requires': 0,
+    'global-require': 0,
     'vue/no-v-html': 'off',
     'import/extensions': 'off',
+    'no-unused-expressions': 'off',
     // 'editor.formatOnSave': true,
     'import/no-extraneous-dependencies': 'off',
     'import/order': [

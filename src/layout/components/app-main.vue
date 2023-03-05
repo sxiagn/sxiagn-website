@@ -6,19 +6,24 @@
       </transition>
     </router-view>
     <ToTop v-show="appMainData.showUp" @scroll-to="handleScrollTo" />
-    <GoBack v-show="$route.name !== 'Index'" />
-    <ToManage v-show="$route.name !== 'Index'" />
-    <ToHome v-show="$route.name !== 'Index'" />
+    <GoBack v-show="showBtn" />
+    <ToManage v-show="showBtn" />
+    <ToHome v-show="showBtn" />
+    <ApiHeader v-if="$route.name === 'Index'" />
   </el-main>
 </template>
 
 <script lang="ts" setup>
-import { reactive, onUnmounted } from 'vue';
+import { reactive, onUnmounted, computed } from 'vue';
+import { useRoute } from 'vue-router';
 import ToTop from '@/components/to-top.vue';
 import ToHome from '@/components/to-home.vue';
 import GoBack from '@/components/go-back.vue';
 import ToManage from '@/components/to-manage.vue';
+import ApiHeader from './api-header.vue';
 
+const route = useRoute();
+const showBtn = computed(() => route.name !== 'Index');
 interface AppMainData {
   timer: NodeJS.Timer | null;
   scrollTop: number;

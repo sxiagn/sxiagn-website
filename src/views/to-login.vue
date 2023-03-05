@@ -4,10 +4,16 @@
       <div class="login-wrap">
         <el-form ref="ruleFormRef" class="login-form" :model="ruleForm" :rules="rules" label-position="top">
           <el-form-item label="账号" prop="userName">
-            <el-input v-model="ruleForm.userName" />
+            <el-input v-model="ruleForm.userName" clearable />
           </el-form-item>
           <el-form-item label="密码" prop="password" class="password">
-            <el-input v-model="ruleForm.password" @keyup.enter="handleSubmit(ruleFormRef)" />
+            <el-input
+              v-model="ruleForm.password"
+              clearable
+              show-password
+              type="password"
+              @keyup.enter="handleSubmit(ruleFormRef)"
+            />
           </el-form-item>
           <el-form-item>
             <el-button class="login-btn" type="primary" @click="handleSubmit(ruleFormRef)">登录</el-button>
@@ -25,6 +31,7 @@ import type { FormInstance, FormRules } from 'element-plus';
 import AESUTIL from '../utils/crypto';
 import { userLogin } from '../api/index';
 import { useInfoStore } from '../store/user-info';
+import { routeInfoStore } from '../store/route-info';
 
 const router = useRouter();
 const userInfoStore = useInfoStore();
@@ -48,8 +55,10 @@ const handleSubmit = async (formEl: FormInstance | undefined) => {
         password: AESUTIL.encrypte(ruleForm.password)
       };
       const { data } = await userLogin(params);
-      userInfoStore.setTokenTolocal(data);
-      router.push('/index');
+      userInfoStore.setToken(data);
+      const routeStore = routeInfoStore();
+      const path = routeStore.getBeforeRouteFormLocal() || '/index';
+      router.push(path);
     }
   });
 };

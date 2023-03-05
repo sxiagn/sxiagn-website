@@ -3,6 +3,7 @@ import { ElMessage, ElLoading, MessageParamsTyped } from 'element-plus';
 import router from '../router/index';
 import { useInfoStore } from '../store/user-info';
 
+const userInfoStore = useInfoStore();
 const request = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 30000
@@ -12,15 +13,29 @@ const request = axios.create({
 let loadingInstance: { close: () => void };
 request.interceptors.request.use(
   (config: any) => {
+    // loading指定target后，每次返回的loadingInstance都是单独的实例，如果当前有loading先关闭再开启，否则同时发送多个请求的时候loading关闭不了
+    if (loadingInstance) loadingInstance.close();
     loadingInstance = ElLoading.service({
       target: document.getElementById('app-main') as HTMLElement,
       text: 'loading'
     });
+
     // 添加请求头，token
-    const userInfoStore = useInfoStore();
-    const token = userInfoStore.getTokenFormLocal();
+    const token = userInfoStore.getToken();
     // 后台需要token前拼接Bearer
     config.headers.Authorization = `Bearer ${token}`;
+    // 添加时间戳
+    if (config.method === 'post') {
+      config.data = {
+        ...config.data,
+        _t: new Date().getTime()
+      };
+    } else if (config.method === 'get') {
+      config.params = {
+        _t: new Date().getTime(),
+        ...config.params
+      };
+    }
     return config;
   },
   error => {
@@ -60,7 +75,8 @@ function handleError(error: {
     switch (error.response.status) {
       case 403:
         ElMessage.error(error.response.data.msg);
-        router.push({ path: '/login', replace: true });
+        userInfoStore.removeToken();
+        router.replace('/login');
         break;
       case 404:
         ElMessage.error('请求路径错误，请检查');

@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
-    <ArticleHeader :title="title" />
-    <div class="article-list">
+  <div class="container-hot">
+    <ArticleHeader title="热门推荐" :is-sticky="false" />
+    <div v-if="textList.length" class="article-list">
       <div v-for="(item, index) in textList" :key="index" class="article-item" @click="handleToDetails(item)">
         <div class="article-title">{{ item['title'] }}</div>
         <div class="create-time">{{ item['createTime'] }}</div>
@@ -14,20 +14,15 @@
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import ArticleHeader from '../components/article-header.vue';
-import { getArticleList } from '../api/index';
-import NoData from '../components/no-data.vue';
+import { getHotArticleList } from '../api/index';
+import ArticleHeader from './article-header.vue';
+import NoData from './no-data.vue';
 
-interface Props {
-  title: string;
-  textType: string;
-}
-const props = defineProps<Props>();
 const router = useRouter();
 const textList = ref([]);
 
 const handleGetTextlist = async () => {
-  const res = await getArticleList({ textType: props.textType });
+  const res = await getHotArticleList();
   textList.value = res.data || [];
 };
 onMounted(() => {
@@ -38,19 +33,19 @@ const handleToDetails = (item: { id: any }) => {
     name: 'ArticleDetails',
     query: {
       id: item.id,
-      textType: props.textType
+      textType: '3'
     }
   });
 };
 </script>
 
 <style lang="scss" scoped>
-.container {
+.container-hot {
   .article-list {
     width: 100%;
     color: #333;
     font-size: 14px;
-    padding: 0 2px;
+    padding: 0 2px 30px 2px;
     .article-item {
       width: 100%;
       border-bottom: 1px solid #dedede;

@@ -3,6 +3,7 @@
     <ArticleHeader title="博文管理">
       <template #title>
         <el-button size="small" plain @click="handleToAddArticle">写文章</el-button>
+        <el-button size="small" plain @click="handleFeedback">问题反馈管理</el-button>
       </template>
     </ArticleHeader>
     <div class="article-list">
@@ -27,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div v-if="!ArticleList.length" class="no-data">暂无数据</div>
+    <NoData :list="ArticleList" />
   </div>
 </template>
 
@@ -38,6 +39,7 @@ import { InfoFilled } from '@element-plus/icons-vue';
 import { ElMessage } from 'element-plus';
 import ArticleHeader from '../components/article-header.vue';
 import { getAllArticleList, deleteArticle } from '../api/index';
+import NoData from '../components/no-data.vue';
 
 const router = useRouter();
 const ArticleList = ref([]);
@@ -62,11 +64,12 @@ const handleDelete = async (item: { id: number; textType: string }, index: numbe
   ArticleList.value.splice(index, 1);
 };
 
-const handleToDetails = (item: { id: number | string }) => {
+const handleToDetails = (item: { id: number | string; textType: string | number }) => {
   router.push({
     name: 'ArticleDetails',
     query: {
-      id: item.id
+      id: item.id,
+      textType: item.textType
     }
   });
 };
@@ -81,6 +84,11 @@ const handleToEdit = (item: { id: number | string }) => {
 };
 const handleToAddArticle = () => {
   router.push({ name: 'ArticleAdd' });
+};
+
+// 问题反馈
+const handleFeedback = () => {
+  router.push({ name: 'ProblemManage' });
 };
 </script>
 
@@ -112,12 +120,6 @@ const handleToAddArticle = () => {
         }
       }
     }
-  }
-  .no-data {
-    padding: 30px 0;
-    background-color: #ebebeb;
-    text-align: center;
-    font-size: 12px;
   }
 }
 </style>

@@ -7,7 +7,12 @@ import {
   FEED_BACK,
   ARTICLE_LOGIN,
   ARTICLE_DELETE,
-  ARTICLE_ALL_LIST
+  ARTICLE_ALL_LIST,
+  ARTICLE_HOT,
+  PROBLEM_LIST,
+  DELETE_PROBLEM,
+  ANSWER_PROBLEM,
+  COVID_PANDEMIC
 } from './url';
 
 // 发表文章
@@ -38,6 +43,19 @@ export function getAllArticleList() {
   return request({
     method: 'get',
     url: ARTICLE_ALL_LIST
+  });
+}
+
+// 获取热门文章
+interface ArticleHot {
+  currentPage?: number;
+  pageSize?: number;
+}
+export function getHotArticleList(params?: ArticleHot) {
+  return request({
+    method: 'get',
+    url: ARTICLE_HOT,
+    params
   });
 }
 
@@ -102,5 +120,47 @@ export function deleteArticle(params: DeleteArticle) {
     method: 'get',
     url: ARTICLE_DELETE,
     params
+  });
+}
+
+// 获取所有问题反馈
+export function getAllProblemList() {
+  return request({
+    method: 'get',
+    url: PROBLEM_LIST
+  });
+}
+
+// 根据id删除问题反馈
+interface DeleteProblem {
+  id: number;
+}
+export function deleteProblem(params: DeleteProblem) {
+  return request({
+    method: 'get',
+    url: DELETE_PROBLEM,
+    params
+  });
+}
+
+// 反馈问题答复
+// 编辑文章
+interface AnswerProblem {
+  id: number;
+  problemAnswer: string;
+}
+export function problemAnswerApi(data: AnswerProblem) {
+  return request({
+    method: 'post',
+    url: ANSWER_PROBLEM,
+    data
+  });
+}
+
+// 获取新冠数据
+export function covidPandemicApi() {
+  return request({
+    method: 'get',
+    url: COVID_PANDEMIC
   });
 }

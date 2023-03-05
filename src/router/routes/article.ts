@@ -1,3 +1,5 @@
+import { PERMISSION_ROUTES } from '../../utils/const';
+
 const routes = [
   {
     path: '/',
@@ -23,18 +25,24 @@ const routes = [
         path: 'article-details',
         name: 'ArticleDetails',
         component: () => import('@/views/article-details.vue'),
-        props: (route: { query: { id: number | string } }) => ({
-          id: route.query.id
+        props: (route: { query: { id: string; textType: string } }) => ({
+          id: route.query.id,
+          textType: route.query.textType
         })
       },
-      // 发表文章与编辑文章路由不同，但公用一个vue文件
       {
-        path: 'article-add',
+        path: PERMISSION_ROUTES.ArticlePreview,
+        name: 'ArticlePreview',
+        component: () => import('@/views/article-preview.vue')
+      },
+      // 发表文章与编辑文章路由不同，但共用一个vue文件
+      {
+        path: PERMISSION_ROUTES.ArticleAdd,
         name: 'ArticleAdd',
         component: () => import('@/views/article-addoredit.vue')
       },
       {
-        path: 'article-edit',
+        path: PERMISSION_ROUTES.ArticleEdit,
         name: 'ArticleEdit',
         component: () => import('@/views/article-addoredit.vue'),
         props: (route: { query: { id: number | string } }) => ({
@@ -42,14 +50,24 @@ const routes = [
         })
       },
       {
-        path: 'article-manage',
+        path: PERMISSION_ROUTES.ArticleManage,
         name: 'ArticleManage',
         component: () => import('@/views/article-manage.vue')
+      },
+      {
+        path: PERMISSION_ROUTES.ProblemManage,
+        name: 'ProblemManage',
+        component: () => import('@/views/problem-manage.vue')
       },
       {
         path: 'login',
         name: 'Login',
         component: () => import('@/views/to-login.vue')
+      },
+      {
+        path: 'to-test',
+        name: 'ToTest',
+        component: () => import('@/views/to-test.vue')
       },
       {
         path: '/:pathMatch(.*)*',

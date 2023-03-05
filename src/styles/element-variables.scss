@@ -22,7 +22,7 @@
   border-radius: 50%;
   color: #fff;
   text-align: center;
-  line-height: 30px;
+  line-height: 32px;
   font-size: 14px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   cursor: pointer;
@@ -32,9 +32,29 @@
   }
 }
 
+// 抽屉公共样式，需要使用custom-class="common-drawer"指定自定义类名
+.common-drawer {
+  .el-drawer__body {
+    border-bottom: 1px solid #dedede;
+    padding: 30px;
+  }
+  .el-drawer__footer {
+    padding-top: 20px;
+  }
+}
+
 // 媒体查询，做移动端适配
 @media (max-width: 767px) {
   .hide-aside {
     display: none;
   }
+  .app-main {
+    > .api-index {
+      padding-top: 235px !important;
+    }
+    .api-header {
+      display: block !important;
+    }
+  }
+  
 }

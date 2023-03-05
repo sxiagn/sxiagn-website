@@ -11,7 +11,11 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "skipLibCheck": true, // 打包的时候跳过第三方包的校验
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "paths": {
+      "*":["./node_modules/@types/", "./typings/*"] // 查找声明文件的路径
+    },
+    "noImplicitAny": false // 打包时注释放开，解决build打包时，插槽报ts类型检测错误
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
