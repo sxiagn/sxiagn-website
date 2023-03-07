@@ -3,6 +3,7 @@
     <ArticleHeader title="博文管理">
       <template #title>
         <el-button size="small" plain @click="handleToAddArticle">写文章</el-button>
+        <el-button size="small" plain @click="handleSwitchManage">开关管理</el-button>
         <el-button size="small" plain @click="handleFeedback">问题反馈管理</el-button>
       </template>
     </ArticleHeader>
@@ -84,6 +85,10 @@ const handleToEdit = (item: { id: number | string }) => {
 };
 const handleToAddArticle = () => {
   router.push({ name: 'ArticleAdd' });
+};
+
+const handleSwitchManage = () => {
+  router.push({ name: 'SwitchManage' });
 };
 
 // 问题反馈

@@ -27,6 +27,7 @@ module.exports = {
     '@vue/typescript/recommended'
   ],
   rules: {
+    // 'prettier/prettier': 'off',
     '@typescript-eslint/no-var-requires': 0,
     'global-require': 0,
     'vue/no-v-html': 'off',

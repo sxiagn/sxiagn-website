@@ -4,5 +4,6 @@ export const PERMISSION_ROUTES = {
   ArticleEdit: 'article-edit',
   ArticleManage: 'article-manage',
   ArticlePreview: 'article-preview',
-  ProblemManage: 'problem-manage'
+  ProblemManage: 'problem-manage',
+  SwitchManage: 'switch-manage'
 };

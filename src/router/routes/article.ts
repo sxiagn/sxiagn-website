@@ -60,6 +60,11 @@ const routes = [
         component: () => import('@/views/problem-manage.vue')
       },
       {
+        path: PERMISSION_ROUTES.SwitchManage,
+        name: 'SwitchManage',
+        component: () => import('@/views/switch-manage.vue')
+      },
+      {
         path: 'login',
         name: 'Login',
         component: () => import('@/views/to-login.vue')

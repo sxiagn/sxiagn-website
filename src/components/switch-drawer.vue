@@ -13,7 +13,6 @@
     <div class="problem-wrap">
       <div class="problem-item">
         <div class="title">问题：</div>
-        <div class="problem-desc">{{ props.problemDesc }}</div>
       </div>
       <div class="problem-item">
         <div class="title">回复：</div>
@@ -34,17 +33,14 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue';
 import { ElMessage } from 'element-plus';
-import { problemAnswerApi } from '../api/index';
 
 const problemAnswer = ref('');
 
 interface Props {
   modelValue: boolean;
-  id: number;
-  problemDesc: string;
 }
 const props = defineProps<Props>();
-const emit = defineEmits(['update:modelValue', 'answered']);
+const emit = defineEmits(['update:modelValue', 'confirm']);
 watch(
   () => props.modelValue,
   n => {
@@ -57,17 +53,8 @@ const handleClose = () => {
 
 // 确定按钮
 const handleConfirm = async () => {
-  if (!problemAnswer.value.trim()) {
-    ElMessage.error('请认真解答该问题~~');
-    return;
-  }
-  const params = {
-    id: props.id,
-    problemAnswer: problemAnswer.value
-  };
-  await problemAnswerApi(params);
   ElMessage.success('执行成功');
-  emit('answered');
+  emit('confirm');
   handleClose();
 };
 </script>
