@@ -12,3 +12,6 @@ export const DELETE_PROBLEM = '/problem/delete/byId';
 export const ANSWER_PROBLEM = '/problem/answer';
 // 新冠疫情新浪开放接口
 export const COVID_PANDEMIC = '/covid/pandemic/list';
+export const SWITCH_ADD = '/switch/add';
+export const SWITCH_LIST = '/switch/list';
+export const SWITCH_EDIT = '/switch/edit';

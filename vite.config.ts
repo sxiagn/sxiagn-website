@@ -15,6 +15,7 @@ export default defineConfig(({ mode }) => {
       }
     },
     server: {
+      hmr: true,
       port: 8088,
       proxy: {
         [envConfig.VITE_APP_BASE_API]: {

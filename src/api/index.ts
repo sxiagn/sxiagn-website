@@ -12,7 +12,10 @@ import {
   PROBLEM_LIST,
   DELETE_PROBLEM,
   ANSWER_PROBLEM,
-  COVID_PANDEMIC
+  COVID_PANDEMIC,
+  SWITCH_ADD,
+  SWITCH_LIST,
+  SWITCH_EDIT
 } from './url';
 
 // 发表文章
@@ -144,7 +147,6 @@ export function deleteProblem(params: DeleteProblem) {
 }
 
 // 反馈问题答复
-// 编辑文章
 interface AnswerProblem {
   id: number;
   problemAnswer: string;
@@ -162,5 +164,42 @@ export function covidPandemicApi() {
   return request({
     method: 'get',
     url: COVID_PANDEMIC
+  });
+}
+
+// 新增开关
+interface SwitchAdd {
+  switchCode: string;
+  switchDescribe: string;
+  switchStatus: string;
+}
+export function switchAddApi(data: SwitchAdd) {
+  return request({
+    method: 'post',
+    url: SWITCH_ADD,
+    data
+  });
+}
+
+// 获取所有开关
+export function switchListApi() {
+  return request({
+    method: 'get',
+    url: SWITCH_LIST
+  });
+}
+
+// 编辑开关
+interface SwitchEdit {
+  id: number;
+  switchCode?: string;
+  switchDescribe?: string;
+  switchStatus: string;
+}
+export function switchEditApi(data: SwitchEdit) {
+  return request({
+    method: 'post',
+    url: SWITCH_EDIT,
+    data
   });
 }

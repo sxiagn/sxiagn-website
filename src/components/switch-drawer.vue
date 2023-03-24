@@ -10,16 +10,32 @@
     destroy-on-close
     append-to-body
   >
-    <div class="problem-wrap">
-      <div class="problem-item">
-        <div class="title">问题：</div>
-      </div>
-      <div class="problem-item">
-        <div class="title">回复：</div>
-        <div class="problem-desc">
-          <el-input v-model="problemAnswer" clearable type="textarea" :rows="12" placeholder="请认真解答该问题~~" />
-        </div>
-      </div>
+    <div class="switch-wrap">
+      <div class="title">{{ props.title }}</div>
+      <el-form
+        ref="ruleForm"
+        :model="formData"
+        :rules="formRules"
+        label-position="top"
+        class="content-form"
+        label-width="100px"
+      >
+        <el-form-item label="唯一编码" prop="switchCode">
+          <el-input v-model="formData.switchCode" clearable placeholder="请输入，如user_switch" />
+        </el-form-item>
+        <el-form-item label="开关描述" prop="switchDescribe">
+          <el-input
+            v-model="formData.switchDescribe"
+            clearable
+            type="textarea"
+            :rows="3"
+            placeholder="请输入文章标题，尽可能简洁提炼"
+          />
+        </el-form-item>
+        <el-form-item label="开关状态" prop="switchStatus">
+          <el-switch v-model="formData.switchStatus" active-value="1" inactive-value="0" />
+        </el-form-item>
+      </el-form>
     </div>
     <template #footer>
       <div style="flex: auto">
@@ -31,20 +47,38 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { ref, watch, reactive } from 'vue';
 import { ElMessage } from 'element-plus';
+import type { FormInstance, FormRules } from 'element-plus';
+import { switchAddApi } from '../api/index';
 
-const problemAnswer = ref('');
-
+const ruleForm = ref<FormInstance>();
+const formData = reactive({
+  switchCode: '',
+  switchDescribe: '',
+  switchStatus: '0'
+});
+const formRules = reactive<FormRules>({
+  switchCode: [
+    { required: true, message: '请输入唯一编码', trigger: 'blur' },
+    { min: 1, max: 50, message: '长度不超过50字', trigger: ['blur', 'change'] }
+  ],
+  switchDescribe: [{ required: true, message: '请输入开关描述', trigger: 'blur' }],
+  switchStatus: [{ required: true, message: '请选择开关状态', trigger: 'change' }]
+});
 interface Props {
   modelValue: boolean;
+  title: string;
 }
-const props = defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: false,
+  title: '新增开关'
+});
 const emit = defineEmits(['update:modelValue', 'confirm']);
 watch(
   () => props.modelValue,
   n => {
-    if (n) problemAnswer.value = '';
+    console.log(n);
   }
 );
 const handleClose = () => {
@@ -53,24 +87,25 @@ const handleClose = () => {
 
 // 确定按钮
 const handleConfirm = async () => {
-  ElMessage.success('执行成功');
-  emit('confirm');
-  handleClose();
+  if (!ruleForm.value) return;
+  await ruleForm.value.validate(async valid => {
+    if (valid) {
+      await switchAddApi(formData);
+      ElMessage.success('执行成功');
+      emit('confirm');
+      handleClose();
+    }
+  });
 };
 </script>
 
 <style lang="scss" scoped>
-.problem-item {
-  font-size: 14px;
-  display: flex;
-  margin-bottom: 20px;
+.switch-wrap {
   .title {
-    width: 45px;
-  }
-  .problem-desc {
-    color: #606266;
-    flex: 1;
-    line-height: 1.5;
+    width: 100%;
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
   }
 }
 </style>
